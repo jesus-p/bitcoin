@@ -16,7 +16,7 @@ RUN apk update && apk add git \
                           libevent-dev                           
 RUN git clone https://github.com/jesus-p/bitcoin
 RUN (cd bitcoin  && ./autogen.sh && \
-                      ./configure --disable-tests \
+                      ./configure.ac --disable-tests \
                       --disable-bench --disable-static  \
                       --without-gui --disable-zmq \ 
                       --with-incompatible-bdb \
