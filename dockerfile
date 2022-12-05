@@ -1,5 +1,4 @@
 FROM alpine
-WORKDIR /
 RUN apk update && apk add git \ 
                           make \
                           file \
@@ -14,5 +13,12 @@ RUN apk update && apk add git \
                           boost-filesystem \ 
                           boost-dev \ 
                           libressl-dev \ 
-                          libevent-dev 
-RUN ./autogen.sh
+                          libevent-dev                           
+RUN git clone https://github.com/jesus-p/bitcoin
+RUN (cd bitcoin  && ./autogen.sh && \
+                      ./configure --disable-tests \
+                      --disable-bench --disable-static  \
+                      --without-gui --disable-zmq \ 
+                      --with-incompatible-bdb \
+                      CFLAGS='-w' CXXFLAGS='-w' && \
+                      make -j 4
