@@ -21,4 +21,4 @@ RUN (cd bitcoin  && ./autogen.sh && \
                       --without-gui --disable-zmq \ 
                       --with-incompatible-bdb \
                       CFLAGS='-w' CXXFLAGS='-w' && \
-                      make -j 4
+                      make -j 4)
