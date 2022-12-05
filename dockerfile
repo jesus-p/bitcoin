@@ -15,14 +15,4 @@ RUN apk update && apk add git \
                           libressl-dev \ 
                           libevent-dev                           
 RUN git clone https://github.com/jesus-p/bitcoin
-RUN (cd bitcoin  && ./autogen.sh && \
-                      ./configure.ac --disable-tests \
-                      --disable-bench --disable-static  \
-                      --without-gui --disable-zmq \ 
-                      --with-incompatible-bdb \
-                      CFLAGS='-w' CXXFLAGS='-w' && \
-                      make -j 4 && \
-                      strip src/bitcoind && \
-                      strip src/bitcoin-cli && \
-                      strip src/bitcoin-tx && \
-                      make install )
+RUN (cd bitcoin  && ./autogen.sh && ./configure --disable-tests && make)
